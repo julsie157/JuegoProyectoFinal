@@ -91,12 +91,12 @@ class SumGameActivity : AppCompatActivity() {
     private fun showCompletionDialog(elapsedSeconds: Long) {
         AlertDialog.Builder(this)
             .setTitle("¡Enhorabuena!")
-            .setMessage("Has alcanzado el objetivo en $elapsedSeconds segundos")
+            .setMessage("Has encontrado la palabra en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
                 // Guardar la puntuación en Firebase
-                saveScore(elapsedSeconds, "SUM")
+                saveScore(elapsedSeconds, "WORD")
                 // Ir a la GameOptionsActivity
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, GameOptionsActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }
@@ -107,7 +107,7 @@ class SumGameActivity : AppCompatActivity() {
     private fun showLossDialog() {
         AlertDialog.Builder(this)
             .setTitle("¡Has perdido!")
-            .setMessage("Te has pasado del objetivo.")
+            .setMessage("No has encontrado la palabra.")
             .setPositiveButton("OK") { _, _ ->
                 // Ir a la GameOptionsActivity
                 val intent = Intent(this, GameOptionsActivity::class.java)
@@ -121,10 +121,12 @@ class SumGameActivity : AppCompatActivity() {
     private fun saveScore(time: Long, gameType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            val email = currentUser.email
+            val username = email?.substringBefore("@")
             val database = FirebaseDatabase.getInstance()
             val scoresRef = database.getReference("scores").child(gameType)
             val newScoreRef = scoresRef.push()
-            val score = Score(currentUser.uid, time)
+            val score = Score(username ?: "unknown", time)
             newScoreRef.setValue(score).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Puntuación guardada correctamente", Toast.LENGTH_SHORT).show()
@@ -136,5 +138,6 @@ class SumGameActivity : AppCompatActivity() {
             Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
         }
     }
+
 
 }

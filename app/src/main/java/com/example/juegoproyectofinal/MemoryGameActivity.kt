@@ -146,10 +146,12 @@ class MemoryGameActivity : AppCompatActivity() {
     private fun saveScore(time: Long, gameType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            val email = currentUser.email
+            val username = email?.substringBefore("@")
             val database = FirebaseDatabase.getInstance()
             val scoresRef = database.getReference("scores").child(gameType)
             val newScoreRef = scoresRef.push()
-            val score = Score(currentUser.uid, time)
+            val score = Score(username ?: "unknown", time)
             newScoreRef.setValue(score).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Puntuación guardada correctamente", Toast.LENGTH_SHORT).show()
@@ -161,5 +163,8 @@ class MemoryGameActivity : AppCompatActivity() {
             Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
 
 }
