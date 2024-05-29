@@ -1,5 +1,5 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,19 +8,21 @@
 
     <Button
         android:id="@+id/memoryGameButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Juego de Memoria" />
 
     <Button
         android:id="@+id/calculationGameButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Juego de Sumas" />
+        android:text="Juego de Sumas"
+        android:layout_marginTop="16dp" />
 
     <Button
         android:id="@+id/wordsGameButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Juego de Palabras" />
+        android:text="Juego de Palabras"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

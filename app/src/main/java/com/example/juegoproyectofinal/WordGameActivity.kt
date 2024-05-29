@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import kotlin.random.Random
@@ -77,10 +79,34 @@ class WordGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has encontrado la palabra en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                // Guardar la puntuación en Firebase
+                saveScore(elapsedSeconds, "WORD")
+                // Ir a la GameOptionsActivity
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }
             .show()
     }
+
+
+    private fun saveScore(time: Long, gameType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val database = FirebaseDatabase.getInstance()
+            val scoresRef = database.getReference("scores").child(gameType)
+            val newScoreRef = scoresRef.push()
+            val score = Score(currentUser.uid, time)
+            newScoreRef.setValue(score).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Puntuación guardada correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al guardar la puntuación", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

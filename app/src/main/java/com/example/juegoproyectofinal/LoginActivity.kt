@@ -1,27 +1,23 @@
 package com.example.juegoproyectofinal
 
 import android.content.Intent
+import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    //INICIO AUTOMATICO
-    private val defaultEmail = "trox20196@hotmail.com"
-    private val defaultPassword = "123456A"
-    override fun onCreate(savedInstanceState: android.os.Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
 
         val emailField = findViewById<EditText>(R.id.email)
         val passwordField = findViewById<EditText>(R.id.password)
@@ -39,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //inicio automatico
-        signIn(defaultEmail, defaultPassword)
+        // Autologin for testing purposes
+        signIn("trox20196@hotmail.com", "123456A")
     }
 
     private fun signIn(email: String, password: String) {

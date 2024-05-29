@@ -1,9 +1,10 @@
 package com.example.juegoproyectofinal
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Logger
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         val memoryGameButton = findViewById<Button>(R.id.memoryGameButton)
         val calculationGameButton = findViewById<Button>(R.id.calculationGameButton)
         val wordGameButton = findViewById<Button>(R.id.wordsGameButton)
+
+        FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG)
 
         memoryGameButton.setOnClickListener {
             val intent = Intent(this, GameOptionsActivity::class.java)
@@ -34,6 +37,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-
 
 

@@ -9,8 +9,11 @@ import android.widget.Button
 import android.widget.Chronometer
 import android.widget.GridLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+
 
 class MemoryGameActivity : AppCompatActivity() {
 
@@ -113,20 +116,25 @@ class MemoryGameActivity : AppCompatActivity() {
     private fun showCompletionDialog(elapsedSeconds: Long) {
         AlertDialog.Builder(this)
             .setTitle("¡Enhorabuena!")
-            .setMessage("Tu tiempo es de $elapsedSeconds segundos")
+            .setMessage("Has encontrado todas las parejas en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                // Guardar la puntuación en Firebase
+                saveScore(elapsedSeconds, "MEMORY")
+                // Ir a la GameOptionsActivity
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }
             .show()
     }
+
 
     private fun showLossDialog() {
         AlertDialog.Builder(this)
             .setTitle("¡Has perdido!")
-            .setMessage("Has alcanzado el máximo de 20 fallos.")
+            .setMessage("Te has pasado del máximo de 20 fallos.")
             .setPositiveButton("OK") { _, _ ->
+                // Ir a la GameOptionsActivity
                 val intent = Intent(this, GameOptionsActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
@@ -134,18 +142,24 @@ class MemoryGameActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun resetGame() {
-        cardImages.shuffle()
-        for (i in 0..15) {
-            cardButtons[i].setBackgroundResource(R.drawable.card_back)
-            cardsFlipped[i] = false
+
+    private fun saveScore(time: Long, gameType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val database = FirebaseDatabase.getInstance()
+            val scoresRef = database.getReference("scores").child(gameType)
+            val newScoreRef = scoresRef.push()
+            val score = Score(currentUser.uid, time)
+            newScoreRef.setValue(score).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Puntuación guardada correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al guardar la puntuación", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
         }
-        firstCardIndex = null
-        secondCardIndex = null
-        matchCount = 0
-        failCount = 0
-        failCountText.text = "Fallas: 0"
-        chronometer.base = SystemClock.elapsedRealtime()
-        gameStarted = false
     }
+
 }

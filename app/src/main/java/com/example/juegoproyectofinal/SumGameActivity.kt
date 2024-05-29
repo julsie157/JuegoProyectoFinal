@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlin.random.Random
 
 class SumGameActivity : AppCompatActivity() {
@@ -81,7 +83,6 @@ class SumGameActivity : AppCompatActivity() {
             // El jugador se ha pasado del objetivo, reseteamos el juego
             chronometer.stop()
             showLossDialog()
-            finish()
         } else {
             Toast.makeText(this, "Suma actual: $currentSum", Toast.LENGTH_SHORT).show()
         }
@@ -92,6 +93,23 @@ class SumGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has alcanzado el objetivo en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
+                // Guardar la puntuación en Firebase
+                saveScore(elapsedSeconds, "SUM")
+                // Ir a la GameOptionsActivity
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish() // Cierra la actividad actual
+            }
+            .show()
+    }
+
+
+    private fun showLossDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("¡Has perdido!")
+            .setMessage("Te has pasado del objetivo.")
+            .setPositiveButton("OK") { _, _ ->
+                // Ir a la GameOptionsActivity
                 val intent = Intent(this, GameOptionsActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
@@ -99,15 +117,24 @@ class SumGameActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun showLossDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("¡Has perdido!")
-            .setMessage("Te has pasado del objetivo.")
-            .setPositiveButton("OK") { _, _ ->
-                val intent = Intent(this, GameOptionsActivity::class.java)
-                startActivity(intent)
-                finish() // Cierra la actividad actual
+
+    private fun saveScore(time: Long, gameType: String) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val database = FirebaseDatabase.getInstance()
+            val scoresRef = database.getReference("scores").child(gameType)
+            val newScoreRef = scoresRef.push()
+            val score = Score(currentUser.uid, time)
+            newScoreRef.setValue(score).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Puntuación guardada correctamente", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Error al guardar la puntuación", Toast.LENGTH_SHORT).show()
+                }
             }
-            .show()
+        } else {
+            Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
+        }
     }
+
 }
