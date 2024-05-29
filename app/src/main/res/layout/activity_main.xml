@@ -1,0 +1,26 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/memoryGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Juego de Memoria" />
+
+    <Button
+        android:id="@+id/calculationGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Juego de Sumas" />
+
+    <Button
+        android:id="@+id/wordsGameButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Juego de Palabras" />
+</LinearLayout>
