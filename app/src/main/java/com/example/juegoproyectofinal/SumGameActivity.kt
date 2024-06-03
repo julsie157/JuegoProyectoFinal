@@ -1,6 +1,7 @@
 package com.example.juegoproyectofinal
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.Menu
@@ -67,6 +68,10 @@ class SumGameActivity : AppCompatActivity() {
         numbers.forEach { number ->
             val button = Button(this).apply {
                 text = number.toString()
+                textSize = 24f
+                setTypeface(typeface, Typeface.BOLD)
+                setTextColor(resources.getColor(R.color.white))
+                setBackgroundColor(resources.getColor(R.color.purple_200))
                 layoutParams = GridLayout.LayoutParams().apply {
                     width = 0
                     height = GridLayout.LayoutParams.WRAP_CONTENT
@@ -113,7 +118,6 @@ class SumGameActivity : AppCompatActivity() {
             .show()
     }
 
-
     private fun showLossDialog() {
         AlertDialog.Builder(this)
             .setTitle("¡Has perdido!")
@@ -126,7 +130,6 @@ class SumGameActivity : AppCompatActivity() {
             }
             .show()
     }
-
 
     private fun saveScore(time: Long, gameType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
