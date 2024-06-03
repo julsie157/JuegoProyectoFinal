@@ -1,28 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:background="@drawable/background"
+    tools:context=".MainActivity">
 
-    <Button
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- El resto de tu layout -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/memoryGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Juego de Memoria" />
+        android:text="Juego de Memoria"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_centerInParent="true" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/calculationGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Juego de Sumas"
-        android:layout_marginTop="16dp" />
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_below="@id/memoryGameButton"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/wordsGameButton"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/wordGameButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Juego de Palabras"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_below="@id/calculationGameButton"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

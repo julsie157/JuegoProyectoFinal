@@ -91,10 +91,10 @@ class SumGameActivity : AppCompatActivity() {
     private fun showCompletionDialog(elapsedSeconds: Long) {
         AlertDialog.Builder(this)
             .setTitle("¡Enhorabuena!")
-            .setMessage("Has encontrado la palabra en $elapsedSeconds segundos")
+            .setMessage("Has alcanzado el objetivo en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
                 // Guardar la puntuación en Firebase
-                saveScore(elapsedSeconds, "WORD")
+                saveScore(elapsedSeconds, "SUM")
                 // Ir a la GameOptionsActivity
                 val intent = Intent(this, GameOptionsActivity::class.java)
                 startActivity(intent)

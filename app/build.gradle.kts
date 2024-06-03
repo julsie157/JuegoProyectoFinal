@@ -49,5 +49,9 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.firebase.auth.ktx.v2103)
+    implementation (libs.material.v140)
+    implementation (libs.androidx.constraintlayout.v204)
+    implementation (libs.androidx.recyclerview)
+    implementation (libs.lottie)
 }
 

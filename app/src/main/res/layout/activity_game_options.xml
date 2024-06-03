@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="16dp">
+    android:background="@drawable/background"
+    tools:context=".GameOptionsActivity">
 
-    <Button
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/playButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jugar" />
+        android:text="Jugar"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_centerInParent="true" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/scoresButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ver Puntuaciones"
-        android:layout_marginTop="16dp" />
-</LinearLayout>
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_below="@id/playButton"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
