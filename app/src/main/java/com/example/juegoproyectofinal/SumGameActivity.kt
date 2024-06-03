@@ -12,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlin.random.Random
@@ -35,7 +35,7 @@ class SumGameActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         targetNumberText = findViewById(R.id.targetNumber)
@@ -117,7 +117,7 @@ class SumGameActivity : AppCompatActivity() {
     private fun showLossDialog() {
         AlertDialog.Builder(this)
             .setTitle("¡Has perdido!")
-            .setMessage("No has encontrado la palabra.")
+            .setMessage("Te has pasado del objetivo.")
             .setPositiveButton("OK") { _, _ ->
                 // Ir a la GameOptionsActivity
                 val intent = Intent(this, GameOptionsActivity::class.java)
@@ -148,6 +148,7 @@ class SumGameActivity : AppCompatActivity() {
             Toast.makeText(this, "Debe iniciar sesión para guardar la puntuación", Toast.LENGTH_SHORT).show()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
@@ -156,7 +157,7 @@ class SumGameActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -170,5 +171,4 @@ class SumGameActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

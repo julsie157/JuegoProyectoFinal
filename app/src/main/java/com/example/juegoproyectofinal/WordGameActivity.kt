@@ -12,7 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.io.BufferedReader
@@ -39,7 +39,7 @@ class WordGameActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         hintText = findViewById(R.id.hintText)
@@ -99,7 +99,6 @@ class WordGameActivity : AppCompatActivity() {
             .show()
     }
 
-
     private fun saveScore(time: Long, gameType: String) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
@@ -129,7 +128,7 @@ class WordGameActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 true
             }
@@ -143,5 +142,4 @@ class WordGameActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
 }

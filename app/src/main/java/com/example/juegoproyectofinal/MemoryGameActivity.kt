@@ -13,10 +13,9 @@ import android.widget.GridLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
 
 class MemoryGameActivity : AppCompatActivity() {
 
@@ -44,7 +43,7 @@ class MemoryGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_memory_game)
 
         auth = FirebaseAuth.getInstance()
-        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         gridLayout = findViewById(R.id.gridLayout)
@@ -181,7 +180,7 @@ class MemoryGameActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 true
             }

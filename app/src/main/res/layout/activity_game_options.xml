@@ -8,9 +8,8 @@
     tools:context=".GameOptionsActivity">
 
     <include
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/playButton"

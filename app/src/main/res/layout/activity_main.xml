@@ -7,37 +7,44 @@
     android:background="@drawable/background"
     tools:context=".MainActivity">
 
+    <!-- Incluir la Toolbar -->
     <include
-        layout="@layout/toolbar"
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar" />
+
+    <!-- Contenido de la actividad -->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar_layout"
+        android:padding="16dp">
 
-    <!-- El resto de tu layout -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/memoryGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Juego de Memoria"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_centerInParent="true" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/memoryGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juego de Memoria"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_centerInParent="true" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/calculationGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Juego de Sumas"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_below="@id/memoryGameButton"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/calculationGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juego de Sumas"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_below="@id/memoryGameButton"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/wordGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Juego de Palabras"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_below="@id/calculationGameButton"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/wordGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Juego de Palabras"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_below="@id/calculationGameButton"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 </RelativeLayout>

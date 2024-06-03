@@ -7,19 +7,9 @@
     android:background="@drawable/background"
     tools:context=".MemoryScoresActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="Just Games Puntuaciones"
-            app:titleTextColor="@android:color/white"
-            app:menu="@menu/toolbar_menu" />
-    </com.google.android.material.appbar.AppBarLayout>
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"

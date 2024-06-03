@@ -7,7 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.appbar.MaterialToolbar
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 
 class GameOptionsActivity : AppCompatActivity() {
@@ -20,22 +20,27 @@ class GameOptionsActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         val playButton = findViewById<Button>(R.id.playButton)
         val scoresButton = findViewById<Button>(R.id.scoresButton)
 
+        val gameType = intent.getStringExtra("GAME_TYPE")
+
         playButton.setOnClickListener {
-            // Navegar a la actividad del juego correspondiente
-            val gameType = intent.getStringExtra("GAME_TYPE")
             when (gameType) {
-                "MEMORY" -> startActivity(Intent(this, MemoryGameActivity::class.java))
-                "SUM" -> startActivity(Intent(this, SumGameActivity::class.java))
-                "WORD" -> startActivity(Intent(this, WordGameActivity::class.java))
-                else -> {
-                    // Manejar el caso de que no se reconozca el tipo de juego
-                    Toast.makeText(this, "Tipo de juego desconocido", Toast.LENGTH_SHORT).show()
+                "MEMORY" -> {
+                    val intent = Intent(this, MemoryGameActivity::class.java)
+                    startActivity(intent)
+                }
+                "SUM" -> {
+                    val intent = Intent(this, SumGameActivity::class.java)
+                    startActivity(intent)
+                }
+                "WORD" -> {
+                    val intent = Intent(this, WordGameActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }
@@ -63,7 +68,7 @@ class GameOptionsActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_home -> {
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 true
             }
