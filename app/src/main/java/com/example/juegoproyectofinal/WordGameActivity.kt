@@ -3,6 +3,8 @@ package com.example.juegoproyectofinal
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.Chronometer
 import android.widget.EditText
@@ -10,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.io.BufferedReader
@@ -17,6 +20,8 @@ import java.io.InputStreamReader
 import kotlin.random.Random
 
 class WordGameActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     private lateinit var hintText: TextView
     private lateinit var scrambledWordText: TextView
@@ -31,6 +36,11 @@ class WordGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_word_game)
+
+        auth = FirebaseAuth.getInstance()
+
+        val toolbar: MaterialToolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         hintText = findViewById(R.id.hintText)
         scrambledWordText = findViewById(R.id.scrambledWordText)
@@ -111,6 +121,27 @@ class WordGameActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_home -> {
+                val intent = Intent(this, GameOptionsActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            R.id.action_logout -> {
+                auth.signOut()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
 }

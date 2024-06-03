@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:title="Just Games"
+        app:title="JuegoProyectoFinal"
         app:titleTextColor="@android:color/white"
         app:menu="@menu/toolbar_menu" />
 </com.google.android.material.appbar.AppBarLayout>

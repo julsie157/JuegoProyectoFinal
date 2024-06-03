@@ -30,9 +30,4 @@
         <activity android:name=".SumScoresActivity" />
         <activity android:name=".WordScoresActivity" />
     </application>
-
-
-
-
-
 </manifest>

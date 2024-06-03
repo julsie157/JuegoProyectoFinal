@@ -52,6 +52,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_home -> {
+                val intent = Intent(this, GameOptionsActivity::class.java)
+                startActivity(intent)
+                true
+            }
             R.id.action_logout -> {
                 auth.signOut()
                 val intent = Intent(this, LoginActivity::class.java)
