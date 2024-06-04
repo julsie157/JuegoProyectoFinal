@@ -104,7 +104,7 @@ class MemoryGameActivity : AppCompatActivity() {
             secondCardIndex = null
         } else {
             failCount++
-            failCountText.text = "Fallas: $failCount"
+            failCountText.text = "Fallos: $failCount"
             Handler().postDelayed({
                 cardButtons[firstIndex].setBackgroundResource(R.drawable.card_back)
                 cardButtons[secondIndex].setBackgroundResource(R.drawable.card_back)
@@ -113,7 +113,7 @@ class MemoryGameActivity : AppCompatActivity() {
                 firstCardIndex = null
                 secondCardIndex = null
 
-                if (failCount >= 20) {
+                if (failCount >= 12) {
                     chronometer.stop()
                     showLossDialog()
                 }
@@ -140,10 +140,10 @@ class MemoryGameActivity : AppCompatActivity() {
     private fun showLossDialog() {
         AlertDialog.Builder(this)
             .setTitle("¡Has perdido!")
-            .setMessage("Te has pasado del máximo de 20 fallos.")
+            .setMessage("Te has pasado del máximo de 12 fallos.")
             .setPositiveButton("OK") { _, _ ->
                 // Ir a la GameOptionsActivity
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }

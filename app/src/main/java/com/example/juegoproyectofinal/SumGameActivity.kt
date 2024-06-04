@@ -87,6 +87,7 @@ class SumGameActivity : AppCompatActivity() {
         currentSum = 0
     }
 
+
     private fun onNumberClicked(number: Int) {
         currentSum += number
         if (currentSum == targetNumber) {
@@ -111,7 +112,7 @@ class SumGameActivity : AppCompatActivity() {
                 // Guardar la puntuación en Firebase
                 saveScore(elapsedSeconds, "SUM")
                 // Ir a la GameOptionsActivity
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }
@@ -124,7 +125,7 @@ class SumGameActivity : AppCompatActivity() {
             .setMessage("Te has pasado del objetivo.")
             .setPositiveButton("OK") { _, _ ->
                 // Ir a la GameOptionsActivity
-                val intent = Intent(this, GameOptionsActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish() // Cierra la actividad actual
             }
