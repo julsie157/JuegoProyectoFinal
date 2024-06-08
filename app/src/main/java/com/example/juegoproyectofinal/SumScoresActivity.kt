@@ -57,8 +57,7 @@ class SumScoresActivity : AppCompatActivity() {
                 scoresAdapter.notifyDataSetChanged()
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@SumScoresActivity, "Error al cargar las puntuaciones", Toast.LENGTH_SHORT).show()
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }
@@ -77,6 +76,7 @@ class SumScoresActivity : AppCompatActivity() {
             }
             R.id.action_logout -> {
                 auth.signOut()
+                Toast.makeText(this, "Has cerrado sesión correctamente", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -86,4 +86,3 @@ class SumScoresActivity : AppCompatActivity() {
         }
     }
 }
-

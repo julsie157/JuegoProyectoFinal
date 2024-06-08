@@ -23,6 +23,7 @@ class WordScoresActivity : AppCompatActivity() {
     private lateinit var scoresAdapter: ScoresAdapter
     private lateinit var scores: MutableList<Score>
     private lateinit var auth: FirebaseAuth
+    private var isDestroyed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,23 +43,29 @@ class WordScoresActivity : AppCompatActivity() {
         fetchScores()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        isDestroyed = true
+    }
+
     private fun fetchScores() {
         val database = FirebaseDatabase.getInstance()
         val scoresRef = database.getReference("scores").child("WORD")
         scoresRef.orderByChild("time").limitToFirst(20).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                scores.clear()
-                for (scoreSnapshot in dataSnapshot.children) {
-                    val score = scoreSnapshot.getValue(Score::class.java)
-                    if (score != null) {
-                        scores.add(score)
+                if (!isDestroyed) {
+                    scores.clear()
+                    for (scoreSnapshot in dataSnapshot.children) {
+                        val score = scoreSnapshot.getValue(Score::class.java)
+                        if (score != null) {
+                            scores.add(score)
+                        }
                     }
+                    scoresAdapter.notifyDataSetChanged()
                 }
-                scoresAdapter.notifyDataSetChanged()
             }
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@WordScoresActivity, "Error al cargar las puntuaciones", Toast.LENGTH_SHORT).show()
+            override fun onCancelled(error: DatabaseError) {
             }
         })
     }
@@ -77,6 +84,7 @@ class WordScoresActivity : AppCompatActivity() {
             }
             R.id.action_logout -> {
                 auth.signOut()
+                Toast.makeText(this, "Has cerrado sesión correctamente", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

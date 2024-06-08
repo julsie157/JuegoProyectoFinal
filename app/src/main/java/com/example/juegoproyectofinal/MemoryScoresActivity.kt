@@ -58,7 +58,6 @@ class MemoryScoresActivity : AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Toast.makeText(this@MemoryScoresActivity, "Error al cargar las puntuaciones", Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -77,6 +76,7 @@ class MemoryScoresActivity : AppCompatActivity() {
             }
             R.id.action_logout -> {
                 auth.signOut()
+                Toast.makeText(this, "Has cerrado sesión correctamente", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
