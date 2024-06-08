@@ -1,10 +1,12 @@
-package com.example.juegoproyectofinal
+package com.example.juegoproyectofinal.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.juegoproyectofinal.R
+import com.example.juegoproyectofinal.models.Score
 
 class ScoresAdapter(private val scores: List<Score>) : RecyclerView.Adapter<ScoresAdapter.ScoreViewHolder>() {
 

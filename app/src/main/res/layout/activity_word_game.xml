@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/fondochuli"
     tools:context=".WordGameActivity">
 
     <include
@@ -19,6 +19,7 @@
         android:layout_marginTop="80dp"
         android:paddingBottom="16dp"
         android:text="Pista: ______"
+        android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
@@ -32,6 +33,7 @@
         android:layout_marginTop="16dp"
         android:paddingBottom="16dp"
         android:text="Palabra: ______"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,8 +50,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/guessEditText"
-            android:layout_width="match_parent"
+            android:layout_width="341dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
             android:hint="Tu respuesta" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Comprobar"
+        app:backgroundTint="?android:attr/colorMultiSelectHighlight"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout" />
@@ -68,8 +72,9 @@
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="48dp"
         android:format="Time: %s"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

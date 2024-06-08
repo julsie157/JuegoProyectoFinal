@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondochuli"
     android:padding="16dp"
     android:gravity="center">
 
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:text="Iniciar sesión"
         style="@style/Widget.MaterialComponents.Button"
+        app:backgroundTint="?android:attr/colorMultiSelectHighlight"
         android:layout_marginBottom="16dp" />
 
     <TextView
@@ -49,5 +51,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Registrarse"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textColor="@android:color/system_accent1_200" />
 </LinearLayout>

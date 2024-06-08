@@ -1,4 +1,5 @@
 package com.example.juegoproyectofinal
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -7,11 +8,14 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var emailEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var registerButton: Button
+    private lateinit var backButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,50 +23,48 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val emailField = findViewById<EditText>(R.id.email)
-        val passwordField = findViewById<EditText>(R.id.password)
-        val registerButton = findViewById<Button>(R.id.registerButton)
+        emailEditText = findViewById(R.id.email)
+        passwordEditText = findViewById(R.id.password)
+        registerButton = findViewById(R.id.registerButton)
+        backButton = findViewById(R.id.backButton)
 
         registerButton.setOnClickListener {
-            val email = emailField.text.toString().trim()
-            val password = passwordField.text.toString().trim()
+            val email = emailEditText.text.toString().trim()
+            val password = passwordEditText.text.toString().trim()
 
-            if (!isValidEmail(email)) {
-                emailField.error = "Ingrese un correo electrónico válido"
-                emailField.requestFocus()
+            if (email.isEmpty()) {
+                emailEditText.error = "Email is required"
+                emailEditText.requestFocus()
                 return@setOnClickListener
             }
 
-            if (!isValidPassword(password)) {
-                passwordField.error = "La contraseña debe tener al menos 6 caracteres, un número y una mayúscula"
-                passwordField.requestFocus()
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailEditText.error = "Please enter a valid email"
+                emailEditText.requestFocus()
                 return@setOnClickListener
             }
 
-            createAccount(email, password)
-        }
-    }
+            if (password.isEmpty() || password.length < 6) {
+                passwordEditText.error = "6 char password required"
+                passwordEditText.requestFocus()
+                return@setOnClickListener
+            }
 
-    private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun isValidPassword(password: String): Boolean {
-        val passwordPattern = Pattern.compile("^(?=.*[0-9])(?=.*[A-Z]).{6,}$")
-        return passwordPattern.matcher(password).matches()
-    }
-
-    private fun createAccount(email: String, password: String) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
-                } else {
-                    Toast.makeText(baseContext, "Registro fallido.",
-                        Toast.LENGTH_SHORT).show()
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, LoginActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
+        }
+
+        backButton.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 }

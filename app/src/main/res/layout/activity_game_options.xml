@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/fondochuli"
     tools:context=".GameOptionsActivity">
 
     <include
@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Jugar"
         style="@style/Widget.MaterialComponents.Button"
+        app:backgroundTint="?android:attr/colorMultiSelectHighlight"
         android:layout_centerInParent="true" />
 
     <com.google.android.material.button.MaterialButton
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Ver Puntuaciones"
         style="@style/Widget.MaterialComponents.Button"
+        app:backgroundTint="?android:attr/colorMultiSelectHighlight"
         android:layout_below="@id/playButton"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true" />

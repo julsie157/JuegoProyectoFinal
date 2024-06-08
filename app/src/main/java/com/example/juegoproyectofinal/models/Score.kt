@@ -1,4 +1,4 @@
-package com.example.juegoproyectofinal
+package com.example.juegoproyectofinal.models
 
 data class Score(
     val username: String = "",

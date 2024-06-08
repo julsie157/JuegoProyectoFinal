@@ -53,5 +53,9 @@ dependencies {
     implementation (libs.androidx.constraintlayout.v204)
     implementation (libs.androidx.recyclerview)
     implementation (libs.lottie)
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.logging.interceptor)
+
 }
 

@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.juegoproyectofinal.models.Score
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlin.random.Random
@@ -71,7 +72,7 @@ class SumGameActivity : AppCompatActivity() {
                 textSize = 24f
                 setTypeface(typeface, Typeface.BOLD)
                 setTextColor(resources.getColor(R.color.white))
-                setBackgroundColor(resources.getColor(R.color.purple_200))
+                setBackgroundColor(resources.getColor(R.color.orange))
                 layoutParams = GridLayout.LayoutParams().apply {
                     width = 0
                     height = GridLayout.LayoutParams.WRAP_CONTENT

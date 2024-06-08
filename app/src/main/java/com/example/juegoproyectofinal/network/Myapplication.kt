@@ -1,4 +1,4 @@
-package com.example.juegoproyectofinal
+package com.example.juegoproyectofinal.network
 
 import android.app.Application
 import com.google.firebase.database.FirebaseDatabase

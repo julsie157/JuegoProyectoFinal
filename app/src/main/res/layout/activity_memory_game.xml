@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/fondochuli"
     tools:context=".MemoryGameActivity">
 
     <include
@@ -15,10 +15,11 @@
         android:id="@+id/failCountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="55dp"
         android:paddingTop="16dp"
         android:text="Fallos: 0"
-        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,7 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/failCountText"
-        app:layout_constraintVertical_bias="0.209">
+        app:layout_constraintVertical_bias="0.0">
 
         <!-- Las cartas se agregarán programáticamente -->
 
@@ -47,9 +48,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:format="Time: %s"
-        app:layout_constraintTop_toBottomOf="@id/gridLayout"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="16dp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        android:paddingTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gridLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

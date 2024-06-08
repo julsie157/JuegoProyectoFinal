@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/fondochuli"
     tools:context=".MemoryScoresActivity">
 
     <include
@@ -21,11 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="55dp"
             android:paddingBottom="16dp"
             android:text="Mejores Puntuaciones"
+            android:textAllCaps="true"
+            android:textColor="@color/design_default_color_error"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold|italic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scoresList"
