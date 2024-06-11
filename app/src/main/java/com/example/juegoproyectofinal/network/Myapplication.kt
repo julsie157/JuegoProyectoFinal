@@ -8,7 +8,6 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        // Establecer el nivel de log de Firebase
         FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG)
     }
 }

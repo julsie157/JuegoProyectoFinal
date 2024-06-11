@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
-                    finish() // Cierra LoginActivity
+                    finish()
                 } else {
                     Toast.makeText(baseContext, "Authentication failed.",
                         Toast.LENGTH_SHORT).show()

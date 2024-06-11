@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/home"
+        android:icon="@drawable/homie"
         android:title="Home"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_logout"
-        android:icon="@drawable/logout"
+        android:icon="@drawable/exit"
         android:title="Logout"
         app:showAsAction="always" />
 </menu>

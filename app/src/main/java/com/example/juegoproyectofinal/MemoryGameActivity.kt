@@ -127,12 +127,10 @@ class MemoryGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has encontrado todas las parejas en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                // Guardar la puntuación en Firebase
                 saveScore(elapsedSeconds, "MEMORY")
-                // Ir a la GameOptionsActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish() // Cierra la actividad actual
+                finish()
             }
             .show()
     }
@@ -143,10 +141,9 @@ class MemoryGameActivity : AppCompatActivity() {
             .setTitle("¡Has perdido!")
             .setMessage("Te has pasado del máximo de 12 fallos.")
             .setPositiveButton("OK") { _, _ ->
-                // Ir a la GameOptionsActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish() // Cierra la actividad actual
+                finish()
             }
             .show()
     }

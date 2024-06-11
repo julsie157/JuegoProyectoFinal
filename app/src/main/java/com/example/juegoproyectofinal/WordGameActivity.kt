@@ -90,12 +90,10 @@ class WordGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has encontrado la palabra en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                // Guardar la puntuación en Firebase
                 saveScore(elapsedSeconds, "WORD")
-                // Ir a la GameOptionsActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish() // Cierra la actividad actual
+                finish()
             }
             .show()
     }

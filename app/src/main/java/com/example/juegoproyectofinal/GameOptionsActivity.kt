@@ -46,14 +46,12 @@ class GameOptionsActivity : AppCompatActivity() {
         }
 
         scoresButton.setOnClickListener {
-            // Navegar a la actividad de puntuaciones correspondiente
             val gameType = intent.getStringExtra("GAME_TYPE")
             when (gameType) {
                 "MEMORY" -> startActivity(Intent(this, MemoryScoresActivity::class.java))
                 "SUM" -> startActivity(Intent(this, SumScoresActivity::class.java))
                 "WORD" -> startActivity(Intent(this, WordScoresActivity::class.java))
                 else -> {
-                    // Manejar el caso de que no se reconozca el tipo de juego
                     Toast.makeText(this, "Tipo de juego desconocido", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -7,12 +7,10 @@
     android:background="@drawable/fondochuli"
     tools:context=".MainActivity">
 
-    <!-- Incluir la Toolbar -->
     <include
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar" />
 
-    <!-- Contenido de la actividad -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

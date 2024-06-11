@@ -14,14 +14,12 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val animationView = findViewById<LottieAnimationView>(R.id.animationView)
+        findViewById<LottieAnimationView>(R.id.animationView)
         val titleText = findViewById<TextView>(R.id.titleText)
 
-        // Cargar la animación para el texto
         val zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in)
         titleText.startAnimation(zoomIn)
 
-        // Configurar el splash screen para que dure 3 segundos y luego inicie el LoginActivity
         Handler().postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             finish()

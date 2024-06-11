@@ -46,20 +46,17 @@ class SumGameActivity : AppCompatActivity() {
 
         generateGame()
 
-        // Iniciar el cronómetro cuando el juego comience
         chronometer.start()
         gameStarted = true
     }
 
     private fun generateGame() {
-        // Generar un número objetivo aleatorio entre 200 y 500
         targetNumber = Random.nextInt(200, 501)
         targetNumberText.text = "Objetivo: $targetNumber"
 
-        // Generar números aleatorios que se sumarán al número objetivo
         numbers.clear()
         numberGrid.removeAllViews()
-        val operationsCount = 6  // Siempre mostrar 6 números
+        val operationsCount = 6
 
         for (i in 0 until operationsCount) {
             val number = Random.nextInt(1, 100)
@@ -78,7 +75,7 @@ class SumGameActivity : AppCompatActivity() {
                     height = GridLayout.LayoutParams.WRAP_CONTENT
                     columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
                     rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    setMargins(8, 8, 8, 8) // Espacio entre los números
+                    setMargins(8, 8, 8, 8)
                 }
                 setOnClickListener { onNumberClicked(number) }
             }
@@ -97,7 +94,6 @@ class SumGameActivity : AppCompatActivity() {
             val elapsedSeconds = elapsedMillis / 1000
             showCompletionDialog(elapsedSeconds)
         } else if (currentSum > targetNumber) {
-            // El jugador se ha pasado del objetivo, reseteamos el juego
             chronometer.stop()
             showLossDialog()
         } else {
@@ -110,12 +106,10 @@ class SumGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has alcanzado el objetivo en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                // Guardar la puntuación en Firebase
                 saveScore(elapsedSeconds, "SUM")
-                // Ir a la GameOptionsActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish() // Cierra la actividad actual
+                finish()
             }
             .show()
     }
@@ -125,10 +119,9 @@ class SumGameActivity : AppCompatActivity() {
             .setTitle("¡Has perdido!")
             .setMessage("Te has pasado del objetivo.")
             .setPositiveButton("OK") { _, _ ->
-                // Ir a la GameOptionsActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-                finish() // Cierra la actividad actual
+                finish()
             }
             .show()
     }
