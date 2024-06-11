@@ -54,6 +54,7 @@ class SumScoresActivity : AppCompatActivity() {
                         scores.add(score)
                     }
                 }
+                scores.sortBy { it.time }
                 scoresAdapter.notifyDataSetChanged()
             }
 
