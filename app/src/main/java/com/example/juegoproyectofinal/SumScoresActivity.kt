@@ -44,8 +44,8 @@ class SumScoresActivity : AppCompatActivity() {
 
     private fun fetchScores() {
         val database = FirebaseDatabase.getInstance()
-        val scoresRef = database.getReference("scores").child("SUM")
-        scoresRef.orderByChild("time").limitToFirst(20).addValueEventListener(object : ValueEventListener {
+        val scoresRef = database.getReference("Puntuaciones").child("SUMAS")
+        scoresRef.orderByChild("tiempo").limitToFirst(20).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 scores.clear()
                 for (scoreSnapshot in dataSnapshot.children) {

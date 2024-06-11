@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             if (!isValidPassword(password)) {
-                passwordField.error = "La contraseña debe tener al menos 6 caracteres, un número y una mayúscula"
+                passwordField.error = "La contraseña debe tener al menos 6 carácteres, un número y una mayúscula"
                 passwordField.requestFocus()
                 return@setOnClickListener
             }
@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     finish()
                 } else {
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(baseContext, "El email y la contraseña no coinciden",
                         Toast.LENGTH_SHORT).show()
                 }
             }

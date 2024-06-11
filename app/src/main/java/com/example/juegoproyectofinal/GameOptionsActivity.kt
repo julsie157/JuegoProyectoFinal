@@ -26,19 +26,19 @@ class GameOptionsActivity : AppCompatActivity() {
         val playButton = findViewById<Button>(R.id.playButton)
         val scoresButton = findViewById<Button>(R.id.scoresButton)
 
-        val gameType = intent.getStringExtra("GAME_TYPE")
+        val tipoJuego = intent.getStringExtra("TIPO_JUEGO")
 
         playButton.setOnClickListener {
-            when (gameType) {
-                "MEMORY" -> {
+            when (tipoJuego) {
+                "MEMORIA" -> {
                     val intent = Intent(this, MemoryGameActivity::class.java)
                     startActivity(intent)
                 }
-                "SUM" -> {
+                "SUMAS" -> {
                     val intent = Intent(this, SumGameActivity::class.java)
                     startActivity(intent)
                 }
-                "WORD" -> {
+                "PALABRAS" -> {
                     val intent = Intent(this, WordGameActivity::class.java)
                     startActivity(intent)
                 }
@@ -46,11 +46,11 @@ class GameOptionsActivity : AppCompatActivity() {
         }
 
         scoresButton.setOnClickListener {
-            val gameType = intent.getStringExtra("GAME_TYPE")
+            val gameType = intent.getStringExtra("TIPO_JUEGO")
             when (gameType) {
-                "MEMORY" -> startActivity(Intent(this, MemoryScoresActivity::class.java))
-                "SUM" -> startActivity(Intent(this, SumScoresActivity::class.java))
-                "WORD" -> startActivity(Intent(this, WordScoresActivity::class.java))
+                "MEMORIA" -> startActivity(Intent(this, MemoryScoresActivity::class.java))
+                "SUMAS" -> startActivity(Intent(this, SumScoresActivity::class.java))
+                "PALABRAS" -> startActivity(Intent(this, WordScoresActivity::class.java))
                 else -> {
                     Toast.makeText(this, "Tipo de juego desconocido", Toast.LENGTH_SHORT).show()
                 }

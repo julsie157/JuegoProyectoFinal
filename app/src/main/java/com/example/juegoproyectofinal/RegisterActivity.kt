@@ -33,19 +33,31 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty()) {
-                emailEditText.error = "Email is required"
+                emailEditText.error = "Introduzca su email"
                 emailEditText.requestFocus()
                 return@setOnClickListener
             }
 
             if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailEditText.error = "Please enter a valid email"
+                emailEditText.error = "Introduzca un email válido"
                 emailEditText.requestFocus()
                 return@setOnClickListener
             }
 
             if (password.isEmpty() || password.length < 6) {
-                passwordEditText.error = "6 char password required"
+                passwordEditText.error = "La contraseña debe tener al menos 6 caracteres"
+                passwordEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (!password.matches(Regex(".*[A-Z].*"))) {
+                passwordEditText.error = "La contraseña debe tener al menos una letra mayúscula"
+                passwordEditText.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (!password.matches(Regex(".*[0-9].*"))) {
+                passwordEditText.error = "La contraseña debe tener al menos un número"
                 passwordEditText.requestFocus()
                 return@setOnClickListener
             }
@@ -53,11 +65,11 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Registro correcto", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Registration failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Registro fallido", Toast.LENGTH_SHORT).show()
                     }
                 }
         }

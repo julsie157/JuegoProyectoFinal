@@ -90,7 +90,7 @@ class WordGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has encontrado la palabra en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                saveScore(elapsedSeconds, "WORD")
+                saveScore(elapsedSeconds, "PALABRAS")
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -104,7 +104,7 @@ class WordGameActivity : AppCompatActivity() {
             val email = currentUser.email
             val username = email?.substringBefore("@")
             val database = FirebaseDatabase.getInstance()
-            val scoresRef = database.getReference("scores").child(gameType)
+            val scoresRef = database.getReference("Puntuaciones").child(gameType)
             val newScoreRef = scoresRef.push()
             val score = Score(username ?: "unknown", time)
             newScoreRef.setValue(score).addOnCompleteListener { task ->

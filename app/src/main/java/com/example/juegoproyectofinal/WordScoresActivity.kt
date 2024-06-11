@@ -50,8 +50,8 @@ class WordScoresActivity : AppCompatActivity() {
 
     private fun fetchScores() {
         val database = FirebaseDatabase.getInstance()
-        val scoresRef = database.getReference("scores").child("WORD")
-        scoresRef.orderByChild("time").limitToFirst(20).addValueEventListener(object : ValueEventListener {
+        val scoresRef = database.getReference("Puntuaciones").child("PALABRAS")
+        scoresRef.orderByChild("tiempo").limitToFirst(20).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (!isDestroyed) {
                     scores.clear()

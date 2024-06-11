@@ -28,19 +28,19 @@ class MainActivity : AppCompatActivity() {
 
         memoryGameButton.setOnClickListener {
             val intent = Intent(this, GameOptionsActivity::class.java)
-            intent.putExtra("GAME_TYPE", "MEMORY")
+            intent.putExtra("TIPO_JUEGO", "MEMORIA")
             startActivity(intent)
         }
 
         calculationGameButton.setOnClickListener {
             val intent = Intent(this, GameOptionsActivity::class.java)
-            intent.putExtra("GAME_TYPE", "SUM")
+            intent.putExtra("TIPO_JUEGO", "SUMAS")
             startActivity(intent)
         }
 
         wordGameButton.setOnClickListener {
             val intent = Intent(this, GameOptionsActivity::class.java)
-            intent.putExtra("GAME_TYPE", "WORD")
+            intent.putExtra("TIPO_JUEGO", "PALABRAS")
             startActivity(intent)
         }
     }

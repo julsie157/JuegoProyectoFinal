@@ -52,7 +52,7 @@ class SumGameActivity : AppCompatActivity() {
 
     private fun generateGame() {
         targetNumber = Random.nextInt(200, 501)
-        targetNumberText.text = "Objetivo: $targetNumber"
+        targetNumberText.text = "Suma Hasta Conseguir: $targetNumber"
 
         numbers.clear()
         numberGrid.removeAllViews()
@@ -106,7 +106,7 @@ class SumGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has alcanzado el objetivo en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                saveScore(elapsedSeconds, "SUM")
+                saveScore(elapsedSeconds, "SUMAS")
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -132,7 +132,7 @@ class SumGameActivity : AppCompatActivity() {
             val email = currentUser.email
             val username = email?.substringBefore("@")
             val database = FirebaseDatabase.getInstance()
-            val scoresRef = database.getReference("scores").child(gameType)
+            val scoresRef = database.getReference("Puntuaciones").child(gameType)
             val newScoreRef = scoresRef.push()
             val score = Score(username ?: "unknown", time)
             newScoreRef.setValue(score).addOnCompleteListener { task ->

@@ -60,7 +60,7 @@ class MemoryGameActivity : AppCompatActivity() {
                 height = 0
                 columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
                 rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                setMargins(8, 8, 8, 8) // Espacio entre las cartas
+                setMargins(8, 8, 8, 8)
             }
             button.setBackgroundResource(R.drawable.card_back)
             button.setOnClickListener { onCardClicked(i) }
@@ -127,7 +127,7 @@ class MemoryGameActivity : AppCompatActivity() {
             .setTitle("¡Enhorabuena!")
             .setMessage("Has encontrado todas las parejas en $elapsedSeconds segundos")
             .setPositiveButton("OK") { _, _ ->
-                saveScore(elapsedSeconds, "MEMORY")
+                saveScore(elapsedSeconds, "MEMORIA")
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -155,7 +155,7 @@ class MemoryGameActivity : AppCompatActivity() {
             val email = currentUser.email
             val username = email?.substringBefore("@")
             val database = FirebaseDatabase.getInstance()
-            val scoresRef = database.getReference("scores").child(gameType)
+            val scoresRef = database.getReference("Puntuaciones").child(gameType)
             val newScoreRef = scoresRef.push()
             val score = Score(username ?: "unknown", time)
             newScoreRef.setValue(score).addOnCompleteListener { task ->
