@@ -24,7 +24,7 @@
             android:paddingBottom="16dp"
             android:text="Mejores Puntuaciones"
             android:textAllCaps="true"
-            android:textColor="@color/design_default_color_error"
+            android:textColor="#A88006"
             android:textSize="24sp"
             android:textStyle="bold|italic" />
 

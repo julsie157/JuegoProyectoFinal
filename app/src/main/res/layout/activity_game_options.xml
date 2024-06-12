@@ -18,6 +18,7 @@
         android:text="Jugar"
         style="@style/Widget.MaterialComponents.Button"
         app:backgroundTint="?android:attr/colorMultiSelectHighlight"
+        android:backgroundTint="#982D0B"
         android:layout_centerInParent="true" />
 
     <com.google.android.material.button.MaterialButton
@@ -27,6 +28,7 @@
         android:text="Ver Puntuaciones"
         style="@style/Widget.MaterialComponents.Button"
         app:backgroundTint="?android:attr/colorMultiSelectHighlight"
+        android:backgroundTint="#982D0B"
         android:layout_below="@id/playButton"
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true" />
